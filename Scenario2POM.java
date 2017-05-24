@@ -81,10 +81,14 @@ public class Scenario2POM {
 		} catch (InterruptedException e3) {
 			e3.printStackTrace();
 		}
+	}
 
+	@Test
+	public void 
 		// Follow first result on Discover on instagram
 
 		driver.navigate().to("https://www.instagram.com/explore/");
+
 		WebElement discoverFollow = driver
 				.findElement(By.xpath("//*[@id='react-root']/section/main/div/ul/li[2]/div/div[1]/div[2]/span/button"));
 		if (discoverFollow.isDisplayed()) {

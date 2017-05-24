@@ -1,37 +1,27 @@
 package testings;
 
-	import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-	import org.junit.*;
-	import org.openqa.selenium.By;
-	import org.openqa.selenium.WebDriver;
-	import org.openqa.selenium.WebElement;
-	import org.openqa.selenium.chrome.ChromeDriver;
-	import org.openqa.selenium.support.ui.WebDriverWait;
-	
-	//https://www.instagram.com/explore/
-	public class InstExplo {
+public class InstExplo {
+	// https://www.instagram.com/explore/
 
+	WebDriver driver;
 
+	By title = By.className("title");
+	WebElement firstButton = driver.findElement(By.xpath("//*[@id='react-root']/section/main/div/ul/li[2]/div/div[1]/div[2]/span/button")));
 
-		static WebDriver driver;
-		WebDriverWait wait;
-		WebElement element;
-
-
-		@BeforeClass
-		public static void loadBrowser() {
-
-			System.out.println("Before Class...");
-
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\Desktop\\Selenium\\chromedriver.exe");
-			driver = new ChromeDriver();
-			
-		}
+	public InstHome(WebDriver driver) {
+		this.driver = driver;
+	}
+	public String getTitle() {
+		return driver.getTitle();
+	}
+	public WebElement getFollow() {
+		return firstButton;
+	}
 
 	
-	
-	
-	
-	
+
 }
