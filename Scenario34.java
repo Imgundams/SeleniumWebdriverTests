@@ -17,6 +17,7 @@ public class Scenario34 {
 	final String userName = "SuperRobot6";
 	final String password = "pascalCase";
 
+	
 	@BeforeClass
 	public static void loadBrowser() {
 
