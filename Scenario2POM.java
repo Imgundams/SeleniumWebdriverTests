@@ -3,7 +3,6 @@ package testings;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,137 +32,171 @@ public class Scenario2POM {
 		chromeOptions.addArguments("--start-maximized");
 		driver = new ChromeDriver(chromeOptions);
 		
+		
+
+
 		driver.navigate().to("https://www.instagram.com/");
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 	}
-
-	@Test
-	public void assertMainPage() {
-		System.out.println("Starting test, asserting Main Page...");
-		// Assert main page login and verify main page signup
-		InstHome hom = new InstHome(driver);
-		System.out.print("Looking for Main page Login button...");
-		WebElement mainPageLogin = hom.getLogin();
-		Assert.assertTrue("Asserted Login", mainPageLogin.isDisplayed());   
-
-		System.out.print("Looking for Main page Signup button...");
-		WebElement mainPageSignup = hom.getSignUp();
-		Assert.assertTrue("Asserted Signup Link", mainPageSignup.isDisplayed());
-	}
 	
-	
-	@Test
-	public void assertLoginPage() {	
-		System.out.println("Starting test, asserting Login Page...");
-		// Assert login page
+	@Before
+	public void chiller(){
 		driver.navigate().to("https://www.instagram.com/accounts/login/");
-		InstLogin log = new InstLogin(driver);
-		System.out.print("Looking for Login page...");
-		WebElement loginPageLoginButton = log.getLoginButton();
-		Assert.assertTrue("Asserted Login Button ", loginPageLoginButton.isDisplayed());
-	}
-	
-	@Test
-	public void loginAndCheck(){
-		System.out.println("Starting test, asserting Login Page...");
-		driver.navigate().to("https://www.instagram.com/accounts/login/");
-		InstLogin log = new InstLogin(driver);
+		InstLogin log2 = new InstLogin();
 		// login code
-		WebElement usernameBox = log.getUsernameBox();
-		WebElement passwordBox = log.getPasswordBox();
-		WebElement loginButton = log.getLoginButton();
+		WebElement usernameBox = log2.getUsernameBox(driver);
+		WebElement passwordBox = log2.getPasswordBox(driver);
+		WebElement loginButton = log2.getLoginButton(driver);
+		Assert.assertTrue("Asserted Login Button ", loginButton.isDisplayed());
 		usernameBox.sendKeys(userName);
 		passwordBox.sendKeys(password);
 		loginButton.click();
 		
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e3) {
-			e3.printStackTrace();
-		}
+		try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e3) {e3.printStackTrace();}
+	
+		System.out.println("\n...");
 	}
 
 	@Test
-	public void 
+	public void assertMainPage() {
+		driver.navigate().to("https://www.instagram.com/accounts/logout");
+		System.out.println("Starting test, asserting Main Page...");
+		// Assert main page login and verify main page signup
+		InstHome hom = new InstHome();
+		System.out.print("Looking for Main page Login button...");
+		WebElement mainPageLogin = hom.getLogin(driver);
+		Assert.assertTrue("Asserted Login", mainPageLogin.isDisplayed());
+
+		System.out.print("Looking for Main page Signup button...");
+		WebElement mainPageSignup = hom.getSignUp(driver);
+		Assert.assertTrue("Asserted Signup Link", mainPageSignup.isDisplayed());
+
+		
+		
+	}
+
+	@Test
+	public void assertLoginPage() {
+		driver.navigate().to("https://www.instagram.com/accounts/logout");
+		System.out.println("Starting test, asserting Login Page...");
+		// Assert login page
+		driver.navigate().to("https://www.instagram.com/accounts/login/");
+		InstLogin log = new InstLogin();
+		System.out.print("Looking for Login page...");
+		WebElement loginPageLoginButton = log.getLoginButton(driver);
+		Assert.assertTrue("Asserted Login Button ", loginPageLoginButton.isDisplayed());
+		
+		
+		
+		
+	}
+
+	@Test
+	public void loginAndCheck(){
+		driver.navigate().to("https://www.instagram.com/accounts/logout");
+		System.out.println("Starting test, asserting Login Page...");
+		driver.navigate().to("https://www.instagram.com/accounts/login/");
+		InstLogin log2 = new InstLogin();
+		// login code
+		WebElement usernameBox = log2.getUsernameBox(driver);
+		WebElement passwordBox = log2.getPasswordBox(driver);
+		WebElement loginButton = log2.getLoginButton(driver);
+		Assert.assertTrue("Asserted Login Button ", loginButton.isDisplayed());
+		usernameBox.sendKeys(userName);
+		passwordBox.sendKeys(password);
+		loginButton.click();
+		
+		try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e3) {e3.printStackTrace();}
+		
+		driver.navigate().to("https://www.instagram.com/accounts/login/");
+		System.out.println("Asserting if Logged in.");
+		InstHomeUser home = new InstHomeUser();
+		WebElement userButton = home.getMyProfileButton(driver);
+		Assert.assertTrue("Asserted User Button ", userButton.isDisplayed());
+		System.out.println("Login Check Test Complete.");
+		
+		
+		
+	}
+
 		// Follow first result on Discover on instagram
+		@Test
+		public void followFirstResult(){
+			
+			System.out.println("Starting test, following first result and asserting increase in following count...");
+			driver.navigate().to("https://www.instagram.com/superrobot.6/");
+			InstUser userPage = new InstUser();
+			double followCount = (double)userPage.getFollowCount(driver);
+			System.out.print(followCount);
+			driver.navigate().to("https://www.instagram.com/explore/");
+			
+			try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}
 
-		driver.navigate().to("https://www.instagram.com/explore/");
+			InstExplo explore = new InstExplo();
+			WebElement discoverFollow = explore.getFollow(driver);
+			Assert.assertTrue("Asserted follow Button ", discoverFollow.isDisplayed());
+			discoverFollow.click();	
+			
+			try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}
+				
+			driver.navigate().to("https://www.instagram.com/superrobot.6/");
+			InstUser userPage2 = new InstUser();
+			double followCount2 = (double)userPage2.getFollowCount(driver);
+			System.out.println(" new follow count is "+followCount2);
+			Assert.assertNotEquals("Follow Count is ",followCount, followCount2);
+			System.out.println("Successfully Followed First Result...");	
+			
+			//Delete after
+			try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}
 
-		WebElement discoverFollow = driver
-				.findElement(By.xpath("//*[@id='react-root']/section/main/div/ul/li[2]/div/div[1]/div[2]/span/button"));
-		if (discoverFollow.isDisplayed()) {
-			discoverFollow.click();
-			try {
-				TimeUnit.SECONDS.sleep(2);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		} else {
-			WebElement discoverFollow2 = driver.findElement(
-					By.xpath("//*[@id='react-root']/section/main/section/ul/li[2]/div/div[1]/div[2]/span/button"));
-			if (discoverFollow2.isDisplayed()) {
-				discoverFollow2.click();
-				try {
-					TimeUnit.SECONDS.sleep(2);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			} else
-				System.out.println("Failed to find somebody to follow.");
-
+			System.out.println("Ending test ");
 		}
-
+		
+		
+		@Test
+		public void changeBio(){
 		// Change Bio To some quote
-		driver.get("https://www.instagram.com/superrobot.6/");
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e2) {
-			e2.printStackTrace();
-		}
+		driver.navigate().to("https://www.instagram.com/superrobot.6/");
+		
+		try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e2) {e2.printStackTrace();}
 
 		numtowords word = new numtowords();
+		InstUser userPage = new InstUser();
 
-		WebElement editProfileButton = driver
-				.findElement(By.xpath("//*[@id='react-root']/section/main/article/header/div[2]/div[1]/a/span/button"));
+		WebElement editProfileButton = userPage.getEditProfileButton(driver);
 		editProfileButton.click();
-		WebElement tweetButtonBox = driver.findElement(By.id("pepBio"));
+		
+		InstEditProf editP = new InstEditProf();
+		
+		WebElement tweetButtonBox = editP.getBioBox(driver);
 		tweetButtonBox.clear();
-		tweetButtonBox.sendKeys(word.numToWords((int) Math.floor(Math.random() * 13)));
+		String wrds= (word.numToWords((int) Math.floor(Math.random() * 13)));
+		tweetButtonBox.sendKeys(wrds);
 
-		WebElement submitProfileButton = driver.findElement(
-				By.xpath("//*[@id='react-root']/section/main/div/article/form/div[10]/div/div/span/button"));
+		WebElement submitProfileButton = editP.getSubmitButton(driver);
 		submitProfileButton.click();
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
-
-		// Logout
+		
+		try {TimeUnit.SECONDS.sleep(1);} catch (InterruptedException e1) {e1.printStackTrace();}
 		driver.navigate().to("https://www.instagram.com/superrobot.6/");
+		String wrds2 = userPage.getBioData(driver);
+		System.out.println("Checking if Bio is changed \n"+ wrds +"\n"+ wrds2 );
+		Assert.assertEquals("BioData Changed is ",wrds, wrds2);
+		// Logout
 
-		WebElement cogButton = driver
-				.findElement(By.xpath("//*[@id='react-root']/section/main/article/header/div[2]/div[1]/div/button"));
-		if (cogButton.isDisplayed()) {
-
-			cogButton.click();
-			WebElement logoutButton = driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/ul/li[4]/button"));
-			logoutButton.click();
-		} else {
-			WebElement cogButton2 = driver
-					.findElement(By.xpath("//*[@id='react-root']/section/nav[1]/div/header/div[2]/button/div"));
-			cogButton2.click();
-			WebElement logoutButton2 = driver.findElement(
-					By.xpath("//*[@id='react-root']/section/nav[1]/div/section/div[3]/div/div[4]/div/div/a/div[1]"));
-			logoutButton2.click();
-		}
-		try {
-			TimeUnit.SECONDS.sleep(2);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+		WebElement cogButton = userPage.getCogButton(driver);
+		cogButton.click();
+		WebElement logoutButton = userPage.getLogoutButton(driver);
+		logoutButton.click();
+		
+		try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}
+		
 		System.out.println("Ending test ");
+	}
+		
+	@After
+	public void logouter(){
+		driver.navigate().to("https://www.instagram.com/accounts/logout");
+			
 	}
 
 	@AfterClass

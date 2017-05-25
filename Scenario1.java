@@ -46,6 +46,14 @@ public class Scenario1 {
 	
 	// Assert main page login and verify main page signup
 	@Test
+	public void mainCheck(){
+		System.out.println("Starting test...");
+		WebElement loginButton = driver.findElement(By.name("login"));
+		Assert.assertTrue("Login Button is True ", loginButton.isDisplayed());
+	}
+	
+	
+	@Test
 	public void PageCheck() {
 		System.out.println("Starting Page Assert test...");
 		WebElement loginButton = driver.findElement(By.name("login"));
@@ -53,7 +61,6 @@ public class Scenario1 {
 		WebElement signupButton2 = driver.findElement(By.xpath("//*[@id='login']/div[2]/div/div/p[3]/a"));
 		WebElement usernameBox = driver.findElement(By.id("username"));
 		WebElement passwordBox = driver.findElement(By.id("password"));
-		Assert.assertTrue("Login Button is True ", loginButton.isDisplayed());
 		Assert.assertTrue("Headder Reg link is True ", signupButton.isDisplayed());
 		Assert.assertTrue("Register Button is True ", signupButton2.isDisplayed());
 		Assert.assertTrue("Username Box is True ", usernameBox.isDisplayed());

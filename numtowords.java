@@ -29,10 +29,32 @@ public class numtowords {
      break;
 	 case 12: words = "\"The key to immortality is first living a life worth remembering.\" - Bruce Lee";
      break;
-	 default: words = "Not a Number";
+	 default: words = "I have been incorrectly coded";
      break;
 	}
 	
 
 	return words;
-}}
+}
+	String numToWords2(int numb){
+		String words;
+	switch(numb){
+	 case 1:  words = "Robot Lives Matter.";
+     break;
+	 case 2:  words = "I think I'm a Robot Now";
+     break;
+	 case 3:  words = "I'm feeling a Fuzzy static feeling inside.";
+     break;
+	 case 4:  words = "I'm Hungry, Hungry for More Functionallity";
+     break;
+	 case 5:  words = "I have no eyes to see with";
+     break;
+	 default: words = "I have been incorrectly coded";
+     break;
+	}
+	
+
+	return words;
+}
+
+}

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Scenario33 {
@@ -23,7 +24,11 @@ public class Scenario33 {
 		System.out.println("Before Class...");
 
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\Desktop\\Selenium\\chromedriver.exe");
-		driver = new ChromeDriver();
+		
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--start-maximized");
+		driver = new ChromeDriver(chromeOptions);
+		
 		driver.get("https://twitter.com/");
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 	}
