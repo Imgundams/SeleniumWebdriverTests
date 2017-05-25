@@ -5,9 +5,9 @@ public class numtowords {
 	String numToWords(int numb){
 		String words;
 	switch(numb){
-	 case 1:  words = "\"I don’t want to earn my living; I want to live.\" - Oscar Wilde ";
+	 case 1:  words = "\"I donâ€™t want to earn my living; I want to live.\" - Oscar Wilde ";
      break;
-	 case 2:  words = "\"Life shrinks or expands in proportion to one’s courage.\" - Anais Nin";
+	 case 2:  words = "\"Life shrinks or expands in proportion to oneâ€™s courage.\" - Anais Nin";
      break;
 	 case 3:  words = "\"Life must be lived forwards, but can only be understood backwards. \" - Kierkegaard";
      break;
@@ -39,15 +39,15 @@ public class numtowords {
 	String numToWords2(int numb){
 		String words;
 	switch(numb){
-	 case 1:  words = "Robot Lives Matter.";
+	 case 1:  words = "In the twenty-first century, the robot will take the place which slave labor occupied in ancient civilization. - Nikola Tesla";
      break;
-	 case 2:  words = "I think I'm a Robot Now";
+	 case 2:  words = "If you lend your consciousness to someone else, you're a robot. - Prince";
      break;
-	 case 3:  words = "I'm feeling a Fuzzy static feeling inside.";
+	 case 3:  words = "...you just can't differentiate between a robot and the very best of humans. â€• Isaac Asimov";
      break;
-	 case 4:  words = "I'm Hungry, Hungry for More Functionallity";
+	 case 4:  words = "Whether we are based on carbon or on silicon makes no fundamental difference; we should each be treated with appropriate respect. - Arthur C. Clarke";
      break;
-	 case 5:  words = "I have no eyes to see with";
+	 case 5:  words = "If you don't want a generation of robots, fund the arts! - Cath Crowley";
      break;
 	 default: words = "I have been incorrectly coded";
      break;
