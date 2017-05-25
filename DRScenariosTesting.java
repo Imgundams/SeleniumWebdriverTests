@@ -230,7 +230,6 @@ public class DRScenariosTesting {
 			test.log(LogStatus.FAIL, "Unsuccessful in Logging In");
 		}
 
-
 		driver.get("https://www.instagram.com/superrobot.6/");
 		
 		numtowords word = new numtowords();
@@ -244,6 +243,11 @@ public class DRScenariosTesting {
 		try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}
 		InstEditProf eProf = new InstEditProf();
 		WebElement tweetButtonBox = eprof.getBioBox(driver);
+		if (tweetButtonBox.isDisplayed()) {
+			test.log(LogStatus.PASS, "Successfully Found Edit Box");
+		} else {
+			test.log(LogStatus.FAIL, "Unsuccessful Finding Edit Box");
+		}
 		tweetButtonBox.clear();
 		tweetButtonBox.sendKeys(bioWords);
 		WebElement submitProfileButton = eProf.getSubmitButton(driver);
