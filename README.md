@@ -7,7 +7,7 @@ I have Made 4 Scenarios.
 1. Grumpy Cat has volunteered to be the Internet vigilante cat, she’s got to check her favourite online community, for the latest posts and to see if there is any trouble brewing.
 2. An Internet Visionary must follow exactly one person every time they log in on Instagram, because nobody does that.
 3.  Tutus the awkward social media turtle, requires to change his Bio description on Instagram every time he logs in before logging out.
-4.  Courage Wolf needs to let the world know that they can do better then they are. He must log into twitter, Tweet something inspiring, before swiftly logging out.
+4.  Courage Wolf needs to let the world know that everybody can do better. He must log into twitter, Tweet something inspiring, before swiftly logging out.
 
 		1. PHPBB - Log in and log out of an open source web forum.
 
