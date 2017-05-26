@@ -3,7 +3,7 @@ Selenium Webdriver Tests
 
 ## Here be the Tests at!
 
-I have Made 4 Scenarios.
+I have Made 4 Scenarios, the files are in the folder ScenarioTests.
 1. Grumpy Cat has volunteered to be the Internet vigilante cat, she’s got to check her favourite online community, for the latest posts and to see if there is any trouble brewing.
 2. An Internet Visionary must follow exactly one person every time they log in on Instagram, because nobody does that.
 3.  Tutus the awkward social media turtle, requires to change his Bio description on Instagram every time he logs in before logging out.
